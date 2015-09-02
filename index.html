@@ -194,7 +194,11 @@
         
           <span itemprop="articleBody"><h3 id="Git简介">Git简介</h3><h3 id="创建版本库">创建版本库</h3><p>使用Git进行版本控制首先要创建版本库，创建版本库的命令比较简单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir myproj</span><br><span class="line">$ <span class="built_in">cd</span> myproj</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure></p>
 <p>这时git会帮我们在myproj目录下创建版本库。使用<code>ls -al</code>命令可以看到当前目录多了一个.git的隐藏文件夹。这个文件夹就是git的版本库目录。</p>
-<h3 id="文件操作">文件操作</h3><h3 id="远程仓库">远程仓库</h3><h3 id="分支管理">分支管理</h3><h3 id="标签管理">标签管理</h3></span>
+<h3 id="文件操作">文件操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git add</span><br><span class="line">$ git commit</span><br><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">$ git reset</span><br><span class="line">$ git checkout --</span><br></pre></td></tr></table></figure>
+<h3 id="远程仓库">远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h3 id="分支管理">分支管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout</span><br><span class="line">$ git checkout -b </span><br><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+<h3 id="标签管理">标签管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
+</span>
         
       
     </div>
