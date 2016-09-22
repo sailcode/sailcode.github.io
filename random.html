@@ -1,0 +1,135 @@
+<html>
+<title>随机分组</title>
+
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <center>
+        <div><span>请输入人员名字，以英文逗号(,)分隔</span></div>
+        <br>
+        <input id="nameList" type="text" name="">
+        <button id="start_btn" length="20" accesskey="s">===开始===</button>
+        <br>
+        <div>
+            <h1 id="oknum">请单击开始</h1></div>
+        <table border="0">
+            <tr>
+                <td align="center">魔鬼队</td>
+                <td align="center">宇宙队</td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea id="result1" rows="20"></textarea>
+                </td>
+                <td>
+                    <textarea id="result2" rows="20"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="n1"></span>
+                </td>
+                <td><span id="n2"></span></td>
+            </tr>
+        </table>
+    </center>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+    <script type="text/javascript">
+    Array.prototype.indexOf = function(val) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] == val) return i;
+        }
+        return -1;
+    };
+
+    Array.prototype.remove = function(val) {
+        var index = this.indexOf(val);
+        if (index > -1) {
+            this.splice(index, 1);
+        }
+    };
+
+    var changeTimer;
+    var countTimer;
+
+    function change(list, size) {
+        $("#oknum").html(list[getRnd(0, size)]);
+    }
+
+
+    $("#start_btn").click(function start() {
+
+        if ($("#nameList").val().trim() == "") {
+            alert("请输入人员名字，以英文逗号(,)分隔");
+            return;
+        }
+
+        init();
+
+        $("#start_btn").attr("disabled", true);
+
+        var list = $("#nameList").val().split(",");
+        var length = list.length;
+        var partition = (length - 1) / 2;
+        var i = 0;
+        makeChange(list, length);
+        countTimer = setInterval(function() {
+            clearInterval(changeTimer);
+            var selected = $("#oknum").html();
+            list.remove(selected);
+            length--;
+
+            if (i <= partition) {
+                fillText("result1", selected);
+            } else {
+                fillText("result2", selected);
+            }
+            i++;
+            makeChange(list, length);
+
+            if (length <= 0) {
+                clearInterval(countTimer);
+                clearInterval(changeTimer);
+                // alert("随机分组完成！");
+                $("#n1").html($("#result1").val().trim() == "" ? "0人" : $("#result1").val().split("\n").length + "人");
+                $("#n2").html($("#result2").val().trim() == "" ? "0人" : $("#result2").val().split("\n").length + "人");
+                $("#start_btn").attr("disabled", false);
+            }
+        }, 2000);
+
+
+    });
+
+    function init() {
+        $("#result1").html("");
+        $("#result2").html("");
+        $("#n1").html("");
+        $("#n2").html("");
+    }
+
+
+    function fillText(container, selected) {
+        var str = $("#" + container).val();
+        if (str != "") {
+            $("#" + container).append("\n").append(selected);
+        } else {
+            $("#" + container).append(selected);
+        }
+    }
+
+    function makeChange(list, size) {
+        clearInterval(changeTimer);
+        changeTimer = setInterval(function() {
+            change(list, size);
+        }, 100);
+    }
+
+
+    function getRnd(min, max) {
+        return parseInt(Math.random() * (max - min + 1));
+    }
+    </script>
+</body>
+
+</html>
